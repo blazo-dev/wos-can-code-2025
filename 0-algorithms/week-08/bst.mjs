@@ -79,8 +79,15 @@ class BinarySearchTree {
      * @returns {number|null} The minimum value, or null if the tree is empty.
      */
     min() {
-        // TODO: Walk left from root until null; return the last node's value.
-        throw new Error("not implemented");
+        if (!this.root) return null;
+
+        let runner = this.root;
+
+        while (runner.left) {
+            runner = runner.left;
+        }
+
+        return runner.value;
     }
 
     /**
@@ -88,8 +95,15 @@ class BinarySearchTree {
      * @returns {number|null} The maximum value, or null if the tree is empty.
      */
     max() {
-        // TODO: Walk right from root until null; return the last node's value.
-        throw new Error("not implemented");
+        if (!this.root) return null;
+
+        let runner = this.root;
+
+        while (runner.right) {
+            runner = runner.right;
+        }
+
+        return runner.value;
     }
 
     /**
@@ -110,8 +124,14 @@ class BinarySearchTree {
      * @returns {void}
      */
     #inOrderRec(node, out) {
-        // TODO: Traverse left, push node.value, traverse right.
-        throw new Error("not implemented");
+        if (!node) return;
+
+        let runner = node;
+
+        this.#inOrderRec(runner.left, out);
+        out.push(runner.value);
+
+        this.#inOrderRec(runner.right, out);
     }
 
     /**
@@ -133,7 +153,13 @@ class BinarySearchTree {
      */
     #preOrderRec(node, out) {
         // TODO: Push node.value, then traverse left and right.
-        throw new Error("not implemented");
+        if (!node) return;
+
+        let runner = node;
+
+        out.push(runner.value);
+        this.#preOrderRec(runner.left, out);
+        this.#preOrderRec(runner.right, out);
     }
 
     /**
@@ -155,7 +181,13 @@ class BinarySearchTree {
      */
     #postOrderRec(node, out) {
         // TODO: Traverse left and right, then push node.value.
-        throw new Error("not implemented");
+        if (!node) return;
+
+        let runner = node;
+
+        this.#postOrderRec(runner.left, out);
+        this.#postOrderRec(runner.right, out);
+        out.push(runner.value);
     }
 
     /**
