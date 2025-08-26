@@ -126,12 +126,10 @@ class BinarySearchTree {
     #inOrderRec(node, out) {
         if (!node) return;
 
-        let runner = node;
+        this.#inOrderRec(node.left, out);
+        out.push(node.value);
 
-        this.#inOrderRec(runner.left, out);
-        out.push(runner.value);
-
-        this.#inOrderRec(runner.right, out);
+        this.#inOrderRec(node.right, out);
     }
 
     /**
@@ -155,11 +153,9 @@ class BinarySearchTree {
         // TODO: Push node.value, then traverse left and right.
         if (!node) return;
 
-        let runner = node;
-
-        out.push(runner.value);
-        this.#preOrderRec(runner.left, out);
-        this.#preOrderRec(runner.right, out);
+        out.push(node.value);
+        this.#preOrderRec(node.left, out);
+        this.#preOrderRec(node.right, out);
     }
 
     /**
@@ -183,11 +179,9 @@ class BinarySearchTree {
         // TODO: Traverse left and right, then push node.value.
         if (!node) return;
 
-        let runner = node;
-
-        this.#postOrderRec(runner.left, out);
-        this.#postOrderRec(runner.right, out);
-        out.push(runner.value);
+        this.#postOrderRec(node.left, out);
+        this.#postOrderRec(node.right, out);
+        out.push(node.value);
     }
 
     /**
