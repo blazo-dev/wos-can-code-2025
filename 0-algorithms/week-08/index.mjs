@@ -16,3 +16,4 @@ console.table({ postOrder: bst.postOrder() });
 console.table({ postOrder: bst.postOrder() });
 console.table({ height: bst.height() });
 console.table({ isValidBST: bst.isValidBST() });
+
