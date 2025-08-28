@@ -242,23 +242,6 @@ class BinarySearchTree {
         this.root = this.#removeRec(this.root, value);
     }
 
-  /**
-   * Recursive remove helper handling 0/1/2 children.
-   * @param {BSTNode|null} node
-   * @param {number} value
-   * @returns {BSTNode|null}
-   */
-  #removeRec(node, value) {
-    // TODO: Standard delete logic.
-    // handle case where value does not exist
-    // if value is less than current node's value, recurse left
-    // if value is greater than current node's value, recurse right
-    // if value is equal to current node's value, we found the node
-    // Scenarios:
-    // 0 children: set parent's pointer to null
-    // 1 child: replace with only child
-    // 2 children: replace with in order successor (min of right subtree)
-  }
     /**
      * Recursive remove helper handling 0/1/2 children.
      * @param {BSTNode|null} node
@@ -277,10 +260,39 @@ class BinarySearchTree {
      *
      */
     #removeRec(node, value) {
-        // TODO: Standard delete logic; on two-children case, find inorder successor via #minNode(node.right).
-        
+        if (value < node.value) {
+            node.left = this.#removeRec(node.left, value);
+        } else if (value > node.value) {
+            node.right = this.#removeRec(node.right, value);
+        } else {
+            // found node to delete
+            if (!node.left && !node.right) {
+                // case 0 children
+                return null;
+            } else if (!node.left) {
+                // case 1 child (right)
+                return node.right;
+            } else if (!node.right) {
+                // case 1 child (left)
+                return node.left;
+            } else {
+                // case 2 children
+                const successor = this.#minNode(node.right);
+                node.value = successor.value;
+                node.right = this.#removeRec(node.right, successor.value);
+            }
+        }
+        return node;
+    }
 
-        throw new Error("not implemented");
+    /**
+     * Returns the node with the minimum value in a non-empty subtree.
+     * @param {BSTNode} node
+     * @returns {BSTNode}
+     */
+    #minNode(node) {
+        while (node.left) node = node.left;
+        return node;
     }
 
     /**
@@ -301,17 +313,6 @@ class BinarySearchTree {
      */
     #findSuccessorFromRoot(root, value) {
         // TODO: While current exists, update candidate when going left on current.value > value.
-        throw new Error("not implemented");
-    }
-
-    /**
-     * Returns the node with the minimum value in a non-empty subtree.
-     * @param {BSTNode} node
-     * @returns {BSTNode}
-     */
-    #minNode(node) {
-        // TODO: Walk left until null.
-        // not walking from root, we're walking from given node
         throw new Error("not implemented");
     }
 
