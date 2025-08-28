@@ -247,9 +247,22 @@ class BinarySearchTree {
      * @param {BSTNode|null} node
      * @param {number} value
      * @returns {BSTNode|null}
+     *
+     * │       ┌── 14
+     * │       │   └── 13
+     * │   ┌── 10
+     * └── 8
+     *     │       ┌── 7
+     *     │   ┌── 6
+     *     │   │   └── 4
+     *     └── 3
+     *         └── 1
+     *
      */
     #removeRec(node, value) {
         // TODO: Standard delete logic; on two-children case, find inorder successor via #minNode(node.right).
+        
+
         throw new Error("not implemented");
     }
 
