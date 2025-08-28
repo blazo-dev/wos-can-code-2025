@@ -9,7 +9,6 @@ bst.prettyPrint();
 console.log({ nodeExist: bst.contains(10) });
 console.table({ min: bst.min() });
 console.table({ max: bst.max() });
-
 console.table({ inOrder: bst.inOrder() });
 console.table({ preOrder: bst.preOrder() });
 console.table({ postOrder: bst.postOrder() });
