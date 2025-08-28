@@ -242,6 +242,23 @@ class BinarySearchTree {
         this.root = this.#removeRec(this.root, value);
     }
 
+  /**
+   * Recursive remove helper handling 0/1/2 children.
+   * @param {BSTNode|null} node
+   * @param {number} value
+   * @returns {BSTNode|null}
+   */
+  #removeRec(node, value) {
+    // TODO: Standard delete logic.
+    // handle case where value does not exist
+    // if value is less than current node's value, recurse left
+    // if value is greater than current node's value, recurse right
+    // if value is equal to current node's value, we found the node
+    // Scenarios:
+    // 0 children: set parent's pointer to null
+    // 1 child: replace with only child
+    // 2 children: replace with in order successor (min of right subtree)
+  }
     /**
      * Recursive remove helper handling 0/1/2 children.
      * @param {BSTNode|null} node
@@ -294,6 +311,7 @@ class BinarySearchTree {
      */
     #minNode(node) {
         // TODO: Walk left until null.
+        // not walking from root, we're walking from given node
         throw new Error("not implemented");
     }
 
