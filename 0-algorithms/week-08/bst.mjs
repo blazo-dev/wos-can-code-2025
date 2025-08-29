@@ -352,7 +352,7 @@ class BinarySearchTree {
     /**
      * (Optional stretch) Rebalances the tree into a near-perfectly balanced form.
      * Typical approach: collect values via inOrder() then build a balanced BST from the sorted array.
-     * @returns {void}
+     * @returns {void|null}
      */
     rebalance() {
         // Optional: collect sorted values then rebuild.

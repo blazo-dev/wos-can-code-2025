@@ -1,6 +1,7 @@
 import { BinarySearchTree } from "./bst.mjs";
 
 export const seed = [8, 3, 10, 1, 6, 14, 4, 7, 13];
+// export const seed = [1, 2, 3, 4, 5, 6, 7, 8];
 
 const bst = new BinarySearchTree();
 seed.forEach((v) => bst.insert(v));
