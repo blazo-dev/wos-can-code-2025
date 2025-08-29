@@ -15,4 +15,6 @@ console.table({ postOrder: bst.postOrder() });
 console.table({ postOrder: bst.postOrder() });
 console.table({ height: bst.height() });
 console.table({ isValidBST: bst.isValidBST() });
-
+console.table({ isBalanced: bst.isBalanced() });
+console.log({ rebalance: bst.rebalance() });
+bst.prettyPrint();

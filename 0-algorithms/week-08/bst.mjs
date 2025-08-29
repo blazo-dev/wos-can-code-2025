@@ -260,6 +260,8 @@ class BinarySearchTree {
      *
      */
     #removeRec(node, value) {
+        if (!node) return null;
+
         if (value < node.value) {
             node.left = this.#removeRec(node.left, value);
         } else if (value > node.value) {
@@ -326,16 +328,26 @@ class BinarySearchTree {
         return info.balanced;
     }
 
-  /**
-   * Bottom-up balance checker.
-   * @param {BSTNode|null} node
-   * @returns {{balanced: boolean, height: number}}
-   */
-  #checkBalance(node) {
-    // TODO: Post-order: compute left/right info; node is balanced if both balanced and |hl-hr| <= 1.
-    // return { balanced: true, height: 0 };
-    throw new Error('not implemented');
-  }
+    /**
+     * Bottom-up balance checker.
+     * @param {BSTNode|null} node
+     * @returns {{balanced: boolean, height: number}}
+     */
+    #checkBalance(node) {
+        if (!node) return { balanced: true, height: 0 };
+
+        const left = this.#checkBalance(node.left);
+        const right = this.#checkBalance(node.right);
+        const absHeight = Math.abs(left.height - right.height);
+
+        if (left.balanced && right.balanced && absHeight <= 1)
+            return {
+                balanced: true,
+                height: Math.max(left.height, right.height) + 1,
+            };
+
+        return { balanced: false, height: 0 };
+    }
 
     /**
      * (Optional stretch) Rebalances the tree into a near-perfectly balanced form.
@@ -344,8 +356,11 @@ class BinarySearchTree {
      */
     rebalance() {
         // Optional: collect sorted values then rebuild.
-        // const sorted = this.inOrder();
-        // this.root = this.#buildBalancedFromSorted(sorted, 0, sorted.length - 1);
+        if (!this.root) return null;
+
+        const sorted = this.inOrder();
+
+        this.root = this.#buildBalancedFromSorted(sorted, 0, sorted.length - 1);
     }
 
     /**
@@ -356,8 +371,15 @@ class BinarySearchTree {
      * @returns {BSTNode|null}
      */
     #buildBalancedFromSorted(arr, lo, hi) {
-        // TODO: Middle element as root; recurse on left/right slices.
-        throw new Error("not implemented");
+        if (lo > hi) return null;
+
+        const mid = Math.floor((lo + hi) / 2);
+        const root = new BSTNode(arr[mid]);
+
+        root.left = this.#buildBalancedFromSorted(arr, lo, mid - 1);
+        root.right = this.#buildBalancedFromSorted(arr, mid + 1, hi);
+
+        return root;
     }
 
     /**
