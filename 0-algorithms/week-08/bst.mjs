@@ -326,16 +326,16 @@ class BinarySearchTree {
         return info.balanced;
     }
 
-    /**
-     * Bottom-up balance checker.
-     * @param {BSTNode|null} node
-     * @returns {{balanced: boolean, height: number}}
-     */
-    #checkBalance(node) {
-        // TODO: Post-order: compute left/right info; node is balanced if both balanced and |hl-hr| <= 1.
-        // return { balanced: true, height: 0 };
-        throw new Error("not implemented");
-    }
+  /**
+   * Bottom-up balance checker.
+   * @param {BSTNode|null} node
+   * @returns {{balanced: boolean, height: number}}
+   */
+  #checkBalance(node) {
+    // TODO: Post-order: compute left/right info; node is balanced if both balanced and |hl-hr| <= 1.
+    // return { balanced: true, height: 0 };
+    throw new Error('not implemented');
+  }
 
     /**
      * (Optional stretch) Rebalances the tree into a near-perfectly balanced form.
